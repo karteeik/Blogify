@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- for connect every where apply code -->
+    <%- include("./partials/head") %>
+    <title>Home</title>
+  </head>
+  <body>
+    <%- include("./partials/nav") %> 
+
+    <div class="container py-5">
+  <div class="row g-4">
+<% blogs.forEach(blog => { %>
+  <div class="col-lg-4 col-md-6">
+    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+
+      <img src="<%= blog.blogImageURL %>" 
+           class="card-img-top" 
+           style="height: 200px; object-fit: cover;" 
+           alt="Blog Image">
+
+      <div class="card-body d-flex flex-column p-4">
+        <h5 class="card-title fw-bold mb-2"><%= blog.title %></h5>
+
+        <p class="card-text text-muted flex-grow-1">
+          <%= blog.body.substring(0, 100) %>...
+        </p>
+
+        <div class="mt-3 d-grid">
+          <a href="/blog/<%= blog._id %>" 
+             class="btn btn-primary rounded-3">
+             Read More
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% }) %>
+  </div>
+</div>
+
+    
+    <%- include("./partials/scripts") %>
+  </body>
+</html>

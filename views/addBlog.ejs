@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>Add Blog</title>
+  </head>
+  <body class="bg-light">
+    <%- include("./partials/nav") %> ```
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-4">
+              <h3 class="text-center mb-4 fw-bold">Create New Blog</h3>
+
+              <form action="/blog" method="post" enctype="multipart/form-data">
+                <div class="mb-4">
+                  <label for="blogImageURL" class="form-label fw-semibold"
+                    >Blog Image</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control form-control-lg"
+                    id="blogImageURL"
+                    name="blogImageURL"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label for="title" class="form-label fw-semibold"
+                    >Title</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="title"
+                    name="title"
+                    placeholder="Enter blog title"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label for="body" class="form-label fw-semibold">Body</label>
+                  <textarea
+                    class="form-control form-control-lg"
+                    id="body"
+                    rows="5"
+                    name="body"
+                    placeholder="Write your blog here..."
+                  ></textarea>
+                </div>
+
+                <div class="d-grid">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-lg rounded-3"
+                  >
+                    Publish Blog
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include("./partials/scripts") %> ```
+  </body>
+</html>

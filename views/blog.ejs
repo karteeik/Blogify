@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <%- include("./partials/nav") %>
+
+    <!-- Blog Card -->
+    <div class="container py-5 d-flex justify-content-center">
+      <div class="card shadow-lg border-0 rounded-4 w-100" style="max-width: 700px;">
+        
+        <img 
+          src="<%= blog.blogImageURL %>" 
+          class="card-img-top rounded-top-4" 
+          alt="Blog Image"
+        />
+
+        <div class="card-body p-4">
+          <h3 class="card-title fw-bold mb-3">
+            <%= blog.title %>
+          </h3>
+          <p class="card-text text-muted fs-5">
+            <%= blog.body %>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Author Info -->
+    <div class="container mb-4 d-flex align-items-center gap-2 justify-content-center">
+      <img 
+        src="<%= blog.createdBy.profileImage %>" 
+        alt="Author" 
+        width="50" 
+        height="50"
+        class="rounded-circle"
+      />
+      <span class="fw-semibold">
+        <%= blog.createdBy.fullName %>
+      </span>
+    </div>
+
+    <!-- Comment Form -->
+    <% if (locals.user) { %>
+      <div class="container mb-4 d-flex justify-content-center">
+        <div class="card shadow-sm border-0 rounded-4 w-100" style="max-width: 700px;">
+          
+          <div class="card-body p-4">
+            <h5 class="fw-bold mb-3">
+              Comments (<%= comments.length %>)
+            </h5>
+
+            <form action="/blog/comment/<%= blog._id %>" method="POST">
+              
+              <div class="mb-3">
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg rounded-3"
+                  id="content"
+                  name="content"
+                  placeholder="Write a comment..."
+                  required
+                />
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-primary btn-lg rounded-3" type="submit">
+                  Post Comment
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Comments List -->
+    <div class="container pb-5 d-flex justify-content-center">
+      <div class="w-100" style="max-width: 700px;">
+        
+        <% comments.forEach(comment => { %>
+          <div class="d-flex gap-3 mb-4 p-3 bg-white rounded-4 shadow-sm">
+            
+            <img 
+              src="<%= comment.createdBy.profileImage %>" 
+              class="rounded-circle border"
+              width="50"
+              height="50"
+              alt="User"
+            />
+
+            <div>
+              <div class="fw-semibold">
+                <%= comment.createdBy.fullName %>
+              </div>
+              <p class="mb-0 text-muted">
+                <%= comment.content %>
+              </p>
+            </div>
+
+          </div>
+        <% }) %>
+
+      </div>
+    </div>
+
+    <%- include("./partials/scripts") %>
+  </body>
+</html>
